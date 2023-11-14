@@ -15,11 +15,19 @@ function FetchLocation() {
       });
   }, []);
 
+  let cityToFetch = ''
+  
   return (
     <div>
-      {locations && locations.results.map((location) => (  // ez mehet kulon komponensbe
+      {locations && locations.results.map((location) => (  
         <div key={location.name}>
-          <p>{location.name}</p>
+          <p onClick={(e) => {
+
+            cityToFetch = e.target.innerText
+            setLocations(null)
+            console.log(cityToFetch)
+
+          }}>{location.name}</p>
         </div>
       ))}
     </div>
