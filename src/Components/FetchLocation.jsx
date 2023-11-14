@@ -17,12 +17,13 @@ function FetchLocation() {
 
   return (
     <div>
-      {locations && locations.results.map((location) => (<div key={location.name}>
-        <p>{location.name}</p></div>))}
+      {locations && locations.results.map((location) => (  // ez mehet kulon komponensbe
+        <div key={location.name}>
+          <p>{location.name}</p>
+        </div>
+      ))}
     </div>
   )
 }
 
 export default FetchLocation;
-
-// locations.results.map((location) => console.log(location.name))
