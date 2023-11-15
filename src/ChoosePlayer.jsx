@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const ChoosePlayer = () => {
 
@@ -33,7 +34,7 @@ const ChoosePlayer = () => {
         return (
           <div key={pokemon.name}>
             <img src={pokemon.sprites.front_default}/>
-            <p>{pokemon.name}</p>
+            <Link to={'/locations'}>{pokemon.name}</Link>
           </div>
         )
       })}
