@@ -4,50 +4,39 @@ import { Link } from 'react-router-dom';
 
 
 const Encounter = () => {
+  // const { locationId } = useParams()
+  // const [encounteredPokemon, setEncounteredPokemon] = useState(null);
+  // const [opponent, setOpponent] = useState(null)
 
-  const { locationId } = useParams()
-  const [encounteredPokemon, setEncounteredPokemon] = useState(null);
+  // let opponentPokemon;
 
-  const [opponent, setOpponent] = useState(null)
+  // useEffect(() => {
+  //   const fetchEncounteredPokemon = async () => {
+  //     try {
+  //       const response = await fetch(`https://pokeapi.co/api/v2/location-area/${locationId}/`);
+  //       const data = await response.json();
 
-  
+  //       const randomNumber = Math.floor(Math.random() * data.pokemon_encounters.length);
+  //       const pokemonUrl = data.pokemon_encounters[randomNumber].pokemon.url;
+  //       const pokemonResponse = await fetch(pokemonUrl);
+  //       const pokemonData = await pokemonResponse.json();
 
-  let opponentPokemon;
+  //       console.log(opponent);
+  //       opponentPokemon = pokemonData;
+  //       console.log(opponentPokemon);
 
-  useEffect(() => {
-    const fetchEncounteredPokemon = async () => {
-      try {
-        const response = await fetch(`https://pokeapi.co/api/v2/location-area/${locationId}/`);
-        const data = await response.json();
+  //       setEncounteredPokemon(pokemonData);
+  //     } catch (error) {
+  //       console.error('fetch error', error);
+  //     }
+  //   };
 
-        const randomNumber = Math.floor(Math.random() * data.pokemon_encounters.length);
-        const pokemonUrl = data.pokemon_encounters[randomNumber].pokemon.url;
-        const pokemonResponse = await fetch(pokemonUrl);
-        const pokemonData = await pokemonResponse.json();
-        // console.log(pokemonData)
-        // setOpponent(pokemonData)
-        console.log(opponent);
-        opponentPokemon = pokemonData;
-        console.log(opponentPokemon);
-
-        setEncounteredPokemon(pokemonData);
-      } catch (error) {
-        console.error('fetch error', error);
-      }
-    };
-
-    fetchEncounteredPokemon();
-  }, [locationId]);
+  //   fetchEncounteredPokemon();
+  // }, [locationId]);
 
   return (
     <div>
-      {encounteredPokemon && <p>{encounteredPokemon.name}</p>}
-      {encounteredPokemon && <img src={encounteredPokemon.sprites.front_default} />}
-
-
-      <Link to={"/"}>home</Link>
-      
-
+      <h1>haha</h1>
     </div>
   );
 };
