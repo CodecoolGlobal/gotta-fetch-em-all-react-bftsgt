@@ -24,6 +24,7 @@ const LocationsList = () => {
           </li>
         ))}
       </ul>
+      
     </div>
   );
 };
