@@ -4,42 +4,39 @@ import { Link } from 'react-router-dom';
 
 
 const Encounter = () => {
-  const { locationId } = useParams()
-  const [encounteredPokemon, setEncounteredPokemon] = useState(null);
-  const [opponent, setOpponent] = useState(null)
+  // const { locationId } = useParams()
+  // const [encounteredPokemon, setEncounteredPokemon] = useState(null);
+  // const [opponent, setOpponent] = useState(null)
 
-  let opponentPokemon;
+  // let opponentPokemon;
 
-  useEffect(() => {
-    const fetchEncounteredPokemon = async () => {
-      try {
-        const response = await fetch(`https://pokeapi.co/api/v2/location-area/${locationId}/`);
-        const data = await response.json();
+  // useEffect(() => {
+  //   const fetchEncounteredPokemon = async () => {
+  //     try {
+  //       const response = await fetch(`https://pokeapi.co/api/v2/location-area/${locationId}/`);
+  //       const data = await response.json();
 
-        const randomNumber = Math.floor(Math.random() * data.pokemon_encounters.length);
-        const pokemonUrl = data.pokemon_encounters[randomNumber].pokemon.url;
-        const pokemonResponse = await fetch(pokemonUrl);
-        const pokemonData = await pokemonResponse.json();
+  //       const randomNumber = Math.floor(Math.random() * data.pokemon_encounters.length);
+  //       const pokemonUrl = data.pokemon_encounters[randomNumber].pokemon.url;
+  //       const pokemonResponse = await fetch(pokemonUrl);
+  //       const pokemonData = await pokemonResponse.json();
 
-        console.log(opponent);
-        opponentPokemon = pokemonData;
-        console.log(opponentPokemon);
+  //       console.log(opponent);
+  //       opponentPokemon = pokemonData;
+  //       console.log(opponentPokemon);
 
-        setEncounteredPokemon(pokemonData);
-      } catch (error) {
-        console.error('fetch error', error);
-      }
-    };
+  //       setEncounteredPokemon(pokemonData);
+  //     } catch (error) {
+  //       console.error('fetch error', error);
+  //     }
+  //   };
 
-    fetchEncounteredPokemon();
-  }, [locationId]);
+  //   fetchEncounteredPokemon();
+  // }, [locationId]);
 
   return (
     <div>
-      {encounteredPokemon && <Link to={"/battlefield"}>start battle with: {encounteredPokemon.name}</Link>}
-      {encounteredPokemon && <img src={encounteredPokemon.sprites.front_default} />}
-
-      <Link to={"/"}>home</Link>
+      <h1>haha</h1>
     </div>
   );
 };
