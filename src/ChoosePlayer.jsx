@@ -2,42 +2,41 @@ import { useEffect, useState } from "react";
 
 const ChoosePlayer = () => {
 
-  const usersPokemon = [];
+  const usersPokemon = [
+    "https://pokeapi.co/api/v2/pokemon/bulbasaur",
+    "https://pokeapi.co/api/v2/pokemon/charizard",
+    "https://pokeapi.co/api/v2/pokemon/poliwhirl"
+  ]
 
-  fetch("https://pokeapi.co/api/v2/pokemon/bulbasaur")
-    .then(res => {
-      return res.json()
-    })
-    .then(pokemon => {
-      usersPokemon.push(pokemon)
-    });
-  fetch("https://pokeapi.co/api/v2/pokemon/charizard")
-    .then(res => {
-      return res.json()
-    })
-    .then(pokemon => {
-      usersPokemon.push(pokemon)
-    })
-  fetch("https://pokeapi.co/api/v2/pokemon/poliwhirl")
-    .then(res => {
-      return res.json()
-    })
-    .then(pokemon => {
-      usersPokemon.push(pokemon)
-    })
+  const [allPokemon, setAllPokemon] = useState(null);
 
-  console.log(usersPokemon)
+  useEffect(() => {
+
+    async function fetchData() {
+      const pokemonsArray = []
+      for (const pokemonlink of usersPokemon) {
+        const response = await fetch(pokemonlink)
+        const pokeData = await response.json()
+        pokemonsArray.push(pokeData)
+      }
+      setAllPokemon(pokemonsArray);
+    }
+    fetchData();
+    console.log('loop finished');
+  }, []);
+
+  console.log(allPokemon)
 
   return (
     <div className="container">
-        {usersPokemon.map((pokemon) => {
-          console.log(pokemon);
-          return (
-            <div key={pokemon.name}>
-              <p>{pokemon.name}</p>
-            </div>
-          )
-        })}
+      {allPokemon && allPokemon.map(pokemon => {
+        return (
+          <div key={pokemon.name}>
+            <img src={pokemon.sprites.front_default}/>
+            <p>{pokemon.name}</p>
+          </div>
+        )
+      })}
     </div>
   );
 }
