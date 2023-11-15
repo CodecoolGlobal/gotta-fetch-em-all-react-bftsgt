@@ -7,7 +7,7 @@ function FetchLocation() {
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/location')
       .then(res => {
-        return res.json() //promise
+        return res.json()
       })
       .then((locations) => {
         setLocations(locations)
