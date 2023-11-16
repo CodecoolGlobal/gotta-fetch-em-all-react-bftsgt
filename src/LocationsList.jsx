@@ -24,7 +24,9 @@ const LocationsList = ({ onLocationsClick }) => {
       <ul>
         {locations &&
           locations.map((location, index) => (
-            <li key={index} onClick={() => onLocationsClick(index + 1)}>
+            <li key={index} onClick={() => {
+              onLocationsClick(index + 1, locations)
+            }}>
               {location.name}
             </li>
           ))}

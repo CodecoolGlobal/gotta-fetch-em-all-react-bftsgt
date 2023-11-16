@@ -17,12 +17,18 @@ function App() {
   const [encounterLocation, setEncounterLocation] = useState(null);
 
 
-  function onPlayerClick() {
+  function onPlayerClick(pokemon) {
     setCurrentPage('LocationsList')
+    localStorage.setItem('PlayerPoke', JSON.stringify(pokemon))
   }
-  function onLocationsClick(index) {
+  function onLocationsClick(index, locations) {
      setCurrentPage('Encounter');
      setEncounterLocation(index);
+     console.log(locations[index])
+   }
+   function battleClick(encounteredPokemon){
+    setCurrentPage('Battlefield')
+    localStorage.setItem('Opponent', JSON.stringify(encounteredPokemon))
    }
   
   useEffect(() => {
@@ -55,7 +61,13 @@ function App() {
   } else if (currentPage === 'Encounter'){
     return (
       <div>
-        <Encounter encounter={encounterLocation}/>
+        <Encounter encounter={encounterLocation} battleClick={battleClick}/>
+      </div>
+    );
+  } else if (currentPage === 'Battlefield'){
+    return (
+      <div>
+        <Battlefield />
       </div>
     );
   }
