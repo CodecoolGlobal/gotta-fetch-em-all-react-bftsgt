@@ -15,22 +15,25 @@ function App() {
   const [currentPage, setCurrentPage] = useState('Chooseplayer');
   const [allPokemon, setAllPokemon] = useState(null);
   const [encounterLocation, setEncounterLocation] = useState(null);
-
+  const [playerPoke, setPlayerPoke] = useState(null)
+  const [opponentPoke, setOpponentPoke] = useState(null)
 
   function onPlayerClick(pokemon) {
     setCurrentPage('LocationsList')
-    localStorage.setItem('PlayerPoke', JSON.stringify(pokemon))
+    setPlayerPoke(pokemon)
   }
   function onLocationsClick(index, locations) {
-     setCurrentPage('Encounter');
-     setEncounterLocation(index);
-     console.log(locations[index])
-   }
-   function battleClick(encounteredPokemon){
+    setCurrentPage('Encounter');
+    setEncounterLocation(index);
+  }
+  function battleClick(encounteredPokemon) {
     setCurrentPage('Battlefield')
-    localStorage.setItem('Opponent', JSON.stringify(encounteredPokemon))
-   }
-  
+    setOpponentPoke(encounteredPokemon)
+  }
+  function endClick() {
+    setCurrentPage('Chooseplayer')
+  }
+
   useEffect(() => {
     async function fetchData() {
       const pokemonsArray = []
@@ -58,16 +61,16 @@ function App() {
         <LocationsList onLocationsClick={onLocationsClick} />
       </div>
     );
-  } else if (currentPage === 'Encounter'){
+  } else if (currentPage === 'Encounter') {
     return (
       <div>
-        <Encounter encounter={encounterLocation} battleClick={battleClick}/>
+        <Encounter encounter={encounterLocation} battleClick={battleClick} />
       </div>
     );
-  } else if (currentPage === 'Battlefield'){
+  } else if (currentPage === 'Battlefield') {
     return (
       <div>
-        <Battlefield />
+        <Battlefield endClick={endClick}  setOpponentPoke={setOpponentPoke} playerPoke={playerPoke} opponentPoke={opponentPoke}  setPlayerPoke={setPlayerPoke}/>
       </div>
     );
   }
