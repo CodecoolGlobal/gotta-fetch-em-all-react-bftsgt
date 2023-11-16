@@ -7,9 +7,9 @@ function getRandomPokemon() {
 
 //Fetching Pokémon
 
-async function getPokemonDetails(pokemonID) {
+async function getPokemonDetails(pokemonName) {
   try {
-    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonID}/`;
+    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`;
 
     const response = await fetch(url);
     const data = await response.json();
@@ -25,17 +25,6 @@ async function getPokemonDetails(pokemonID) {
     console.error('Error fetching Pokémon details:', error);
   }
 }
-
-/* (async () => {
-  const pokemonID = ditto;
-  try {
-    const pokemonDetails = await getPokemonDetails(pokemonID);
-    console.log('Pokémon Details:', pokemonDetails);
-  } catch (error) {
-    console.error('Error getting Pokémon details:', error);
-  }
-})(); */
-
 
 //Battle
 
