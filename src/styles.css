@@ -1,31 +1,141 @@
-.choosePlayerContainer {
+body {
+  background: linear-gradient(rgba(255, 255, 255, .3), rgba(255, 255, 255, .3)), url('https://wallpaperaccess.com/full/3551101.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Press Start 2P';
+  box-sizing: border-box;
+}
+
+#root{
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 95vh;
 }
 
-.choosePlayerContainer > div {
-  margin: 10px; 
-  border: 1px solid #000;
-  text-align: center;
-  padding: 10px;
-}
-
-.choosePlayerContainer img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #000;
+.choosePlayerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 500px;
+  border: 5px solid white;
+  color: white;
+  border-radius: 15px;
+  /* background: linear-gradient(135deg, rgb(170 188 251 / 22%), rgba(255, 255, 255, 0)); */
+  /* background-color: #316ac5; */
+  background-color: #0000cc;
+  backdrop-filter: blur(4px);
 }
 
 .locationsListContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 600px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 15px;
+  /* background: linear-gradient(135deg, rgb(170 188 251 / 22%), rgba(255, 255, 255, 0)); */
+  background-color: #343188;
+  background-color: #0000cc;
+  border: 5px solid white;
+  color: white;
+  backdrop-filter: blur(4px);
 }
 
-.locationsListContainer > div {
-  margin: 10px; 
-  border: 1px solid #000;
+
+
+.choose-poke {
+  display: block;
+}
+
+.poke-image {
+  margin-bottom: 5px;
+  border-bottom: 1px solid black;
+}
+
+.poke-name {
   text-align: center;
+  padding: 10px 0px;
+  margin:0px;
+  margin-top: 10px;
+  /* border-top: 1px solid black; */
+  /* padding-top: 25px; */
+}
+
+.poke-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  height: 300px;
+  /* background: linear-gradient(135deg, rgb(170 188 251 / 22%), rgba(255, 255, 255, 0)); */
+  background-color: white;
+  color: black;
+  padding: 8px 5px 10px;
+  margin: 10px 15px;
+	border: 3px solid black;
+	border-radius: 12px;
+  backdrop-filter: blur(4px);
+
+}
+
+.poke-3 {
+  display: flex;
+  margin: 10px 44px;
+}
+
+ul{
+  padding-inline-start: 0px;
+}
+
+li {
+  margin-bottom: 3px;
+  list-style-type: none;
+}
+
+li:hover, .poke-name:hover {
+  background-color: #FFD700;
+  /* background-color: #f0f0f0;  */
+  outline: 2px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#Fight {
+  font-family: 'Press Start 2P';
+  font-style: italic;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 9px;
+  background-color: #FFD700;
+  align-self: flex-start;
+}
+
+#Back {
+  font-family: 'Press Start 2P';
   padding: 10px;
+  border-radius: 9px;
+  background-color: rgb(175, 175, 175);
+  align-self: flex-end;
+}
+
+.battlefield{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 330px;
+  /* border: 1px solid black; */
+}
+
+.vs-icon {
+  width: 120px;
+  position: absolute;
+  top: 560px;
+  z-index: 3;
+}
+
+.locationsListContainer li:hover {
+  color: black;
 }

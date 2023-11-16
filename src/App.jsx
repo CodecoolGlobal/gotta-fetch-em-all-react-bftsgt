@@ -51,27 +51,27 @@ function App() {
 
   if (currentPage === 'Chooseplayer') {
     return (
-      <div>
+      <>
         <ChoosePlayer allPokemon={allPokemon} onPlayerClick={onPlayerClick} />
-      </div>
+      </>
     );
   } else if (currentPage === 'LocationsList') {
     return (
-      <div>
+      <>
         <LocationsList onLocationsClick={onLocationsClick} />
-      </div>
+      </>
     );
   } else if (currentPage === 'Encounter') {
     return (
-      <div>
+      <>
         <Encounter encounter={encounterLocation} battleClick={battleClick} />
-      </div>
+      </>
     );
   } else if (currentPage === 'Battlefield') {
     return (
-      <div>
+      <>
         <Battlefield endClick={endClick} setOpponentPoke={setOpponentPoke} playerPoke={playerPoke} opponentPoke={opponentPoke} setUsersPokemon={setUsersPokemon} usersPokemon={usersPokemon} setPlayerPoke={setPlayerPoke} />
-      </div>
+      </>
     );
   }
 }

@@ -25,15 +25,13 @@ const Encounter = ({ encounter, battleClick }) => {
   }, [encounter]);
 
  return (
-  <div>
+  <div className='encounter-container'>
+    <h2>Encounter!</h2>
     {encounteredPokemon && (
-      <div>
+      <div className='poke-card'>
         {console.log(encounter)}
-        <div>{encounteredPokemon.name}</div>
-        <img src={encounteredPokemon.sprites.front_default} alt={encounteredPokemon.name} onClick={() => {
-          battleClick(encounteredPokemon)
-        }
-        } />
+        <img className='poke-image' src={encounteredPokemon.sprites.front_default} alt={encounteredPokemon.name} onClick={() => battleClick(encounteredPokemon)} />
+        <div className='poke-name' onClick={() => battleClick(encounteredPokemon)}>{encounteredPokemon.name.toUpperCase()}</div>
       </div>
     )}
   </div>
