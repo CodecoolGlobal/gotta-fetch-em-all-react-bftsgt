@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import '/src/styles.css';
 
 const LocationsList = ({ onLocationsClick }) => {
   const [locations, setLocations] = useState([]);

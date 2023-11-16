@@ -127,17 +127,22 @@ const Battlefield = () => {
   encounter();
 
   return (
-    <div className="battlefield">
-      <div>{playerPokemonName}</div>
-      <img
-        src={pokemon.sprites.front_default}
-        alt={pokemon.name}
-      />
-      <div>{opponentPokemonName}</div>
-      <img
-        src={opponent.sprites.front_default}
-        alt={opponent.name}
-      />
+    <div className="battlefieldContainer">
+      <div className="playerPokemonContainer">
+        <div className="playerPokemon">{playerPokemonName}</div>
+        <img
+          src={pokemon.sprites.front_default}
+          alt={pokemon.name}
+        />
+      </div>
+      <div className="vsSign">VS</div>
+      <div className="opponentPokemonContainer">
+        <div className="opponentPokemon">{opponentPokemonName}</div>
+        <img
+          src={opponent.sprites.front_default}
+          alt={opponent.name}
+        />
+      </div>
     </div>
   );
 };

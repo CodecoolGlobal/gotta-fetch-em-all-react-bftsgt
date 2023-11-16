@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import '/src/styles.css';
 
 const Encounter = ({ encounter, battleClick }) => {
   const [encounteredPokemon, setEncounteredPokemon] = useState(null);
+
   useEffect(() => {
     const fetchEncounteredPokemon = async () => {
-      console.log(encounter)
+      console.log(encounter);
       try {
         if (encounter) {
           const response = await fetch(`https://pokeapi.co/api/v2/location-area/${encounter}/`);
@@ -24,21 +26,23 @@ const Encounter = ({ encounter, battleClick }) => {
     fetchEncounteredPokemon();
   }, [encounter]);
 
- return (
-  <div>
-    {encounteredPokemon && (
-      <div>
-        {console.log(encounter)}
-        <div>{encounteredPokemon.name}</div>
-        <img src={encounteredPokemon.sprites.front_default} alt={encounteredPokemon.name} onClick={() => {
-          battleClick(encounteredPokemon)
-        }
-        } />
-      </div>
-    )}
-  </div>
-);
-
+  return (
+    <div className="encounter-container">
+      {encounteredPokemon && (
+        <div>
+          {console.log(encounter)}
+          <div>{`A wild ${encounteredPokemon.name} appears!`}</div>
+          <img
+            src={encounteredPokemon.sprites.front_default}
+            alt={encounteredPokemon.name}
+            onClick={() => {
+              battleClick(encounteredPokemon);
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Encounter;

@@ -29,3 +29,77 @@
   text-align: center;
   padding: 10px;
 }
+
+.locationsListContainer {
+  position: relative;
+  min-height: 200px;
+}
+
+.locationsListContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://projectpokemon.org/home/uploads/monthly_2020_01/large.Load_wp04.png.5f7e0cb160fccea29f3b9c599ebb8b17.png') no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.25;
+}
+
+.locationsListContainer h3,
+.locationsListContainer ul {
+  position: relative;
+  z-index: 1;
+}
+
+.locationsListContainer li:hover {
+  background-color: yellow;
+}
+
+.battlefieldContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+}
+
+.playerPokemonContainer,
+.opponentPokemonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  border: 1px solid #000;
+}
+
+
+.playerPokemon img,
+.opponentPokemon img {
+  width: 100px;
+  height: auto;
+  border: 1px solid #000;
+}
+
+.playerPokemonContainer {
+  bottom: 250px;
+  left: 250px;
+}
+
+.opponentPokemonContainer {
+  top: 250px;
+  right: 250px;
+}
+
+
+
+.vsSign {
+  font-size: 24px;
+  color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
