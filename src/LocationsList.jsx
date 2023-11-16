@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
-const LocationsList = () => {
+import { useState, useEffect } from 'react';
+
+const LocationsList = ({ onLocationsClick }) => {
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
     const fetchLocations = async () => {
-      const response = await fetch('https://pokeapi.co/api/v2/location');
-      const data = await response.json();
-      setLocations(data.results);
+      try {
+        const response = await fetch('https://pokeapi.co/api/v2/location');
+        const data = await response.json();
+        setLocations(data.results);
+      } catch (error) {
+        console.error('fetch error', error);
+      }
     };
 
     fetchLocations();
@@ -18,15 +22,19 @@ const LocationsList = () => {
     <div>
       <h3>Locations: </h3>
       <ul>
-        {locations && locations.map((location, index) => (
-          <li key={index}>
-            <Link to={`/encounter/${index + 1}`}>{location.name}</Link>
-          </li>
-        ))}
+        {locations &&
+          locations.map((location, index) => (
+            <li key={index} onClick={() => onLocationsClick(index + 1)}>
+              {location.name}
+            </li>
+          ))}
       </ul>
-      
     </div>
   );
 };
 
 export default LocationsList;
+
+
+
+

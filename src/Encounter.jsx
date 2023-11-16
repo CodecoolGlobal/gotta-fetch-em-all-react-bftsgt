@@ -1,44 +1,41 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 
+const Encounter = ({ encounter }) => {
+  const [encounteredPokemon, setEncounteredPokemon] = useState(null);
+  useEffect(() => {
+    const fetchEncounteredPokemon = async () => {
+      console.log(encounter)
+      try {
+        if (encounter) {
+          const response = await fetch(`https://pokeapi.co/api/v2/location-area/${encounter}/`);
+          const data = await response.json();
+          const randomNumber = Math.floor(Math.random() * data.pokemon_encounters.length);
+          const pokemonUrl = data.pokemon_encounters[randomNumber].pokemon.url;
+          const pokemonResponse = await fetch(pokemonUrl);
+          const pokemonData = await pokemonResponse.json();
 
-const Encounter = () => {
-  // const { locationId } = useParams()
-  // const [encounteredPokemon, setEncounteredPokemon] = useState(null);
-  // const [opponent, setOpponent] = useState(null)
+          setEncounteredPokemon(pokemonData);
+        }
+      } catch (error) {
+        console.error('fetch error', error);
+      }
+    };
 
-  // let opponentPokemon;
+    fetchEncounteredPokemon();
+  }, [encounter]);
 
-  // useEffect(() => {
-  //   const fetchEncounteredPokemon = async () => {
-  //     try {
-  //       const response = await fetch(`https://pokeapi.co/api/v2/location-area/${locationId}/`);
-  //       const data = await response.json();
+ return (
+  <div>
+    {encounteredPokemon && (
+      <div>
+        {console.log(encounter)}
+        <div>{encounteredPokemon.name}</div>
+        <img src={encounteredPokemon.sprites.front_default} alt={encounteredPokemon.name} />
+      </div>
+    )}
+  </div>
+);
 
-  //       const randomNumber = Math.floor(Math.random() * data.pokemon_encounters.length);
-  //       const pokemonUrl = data.pokemon_encounters[randomNumber].pokemon.url;
-  //       const pokemonResponse = await fetch(pokemonUrl);
-  //       const pokemonData = await pokemonResponse.json();
-
-  //       console.log(opponent);
-  //       opponentPokemon = pokemonData;
-  //       console.log(opponentPokemon);
-
-  //       setEncounteredPokemon(pokemonData);
-  //     } catch (error) {
-  //       console.error('fetch error', error);
-  //     }
-  //   };
-
-  //   fetchEncounteredPokemon();
-  // }, [locationId]);
-
-  return (
-    <div>
-      <h1>haha</h1>
-    </div>
-  );
 };
 
 export default Encounter;
