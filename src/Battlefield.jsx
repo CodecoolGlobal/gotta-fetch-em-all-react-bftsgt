@@ -1,13 +1,13 @@
 import ChoosePlayer from "./ChoosePlayer";
 import Encounter from "./Encounter";
 
-const Battlefield = () => {
-  const pokemon = JSON.parse(localStorage.getItem("PlayerPoke"));
-  const opponent = JSON.parse(localStorage.getItem("Opponent"));
+const Battlefield = ({ endClick, playerPoke, opponentPoke, setUsersPokemon, usersPokemon }) => {
+  const pokemon = playerPoke
+  const opponent = opponentPoke
   const playerPokemonName = pokemon.name;
   const opponentPokemonName = opponent.name;
-  console.log(playerPokemonName);
-  console.log(opponentPokemonName);
+  console.log(pokemon);
+  console.log(opponent.species.url);
 
   async function getPokemonDetails(pokemonName) {
     try {
@@ -48,7 +48,7 @@ const Battlefield = () => {
     return Math.floor(damage);
   }
 
-  async function encounter() {
+  async function encounter(pokemonName) {
     // Wait for both player and opponent details to be fetched
     const playerPokemonDetails = await getPokemonDetails(playerPokemonName);
     const opponentPokemonDetails = await getPokemonDetails(opponentPokemonName);
@@ -71,6 +71,7 @@ const Battlefield = () => {
     let encounterResult = null; // Flag to track encounter result
 
     while (playerPokemon.hp > 0 && opponentPokemon.hp > 0) {
+      console.log(playerPokemon.hp)
       // Player attacks
       const damageToOpponent = calculateDamage(playerPokemon, opponentPokemon);
       opponentPokemon.hp -= damageToOpponent;
@@ -85,7 +86,10 @@ const Battlefield = () => {
         setTimeout(() => {
           console.log(`${opponentPokemon.name} fainted! You captured it.`);
           encounterResult = "playerWins"; // Set the flag
+          alert(`You captured: ${pokemonName}`)
         }, (counter += 300));
+        setUsersPokemon([...usersPokemon, `https://pokeapi.co/api/v2/pokemon/${pokemonName}`])
+        console.log(usersPokemon);
         break;
       }
 
@@ -103,6 +107,8 @@ const Battlefield = () => {
         setTimeout(() => {
           console.log(`${playerPokemon.name} fainted! The encounter ends.`);
           encounterResult = "opponentWins"; // Set the flag
+          setUsersPokemon([...usersPokemon.filter(pokemonUrl => pokemonUrl !== `https://pokeapi.co/api/v2/pokemon/${playerPokemon.name}`)]);
+          alert(`You lost your pokemon: ${playerPokemon.name}`)
         }, (counter += 300));
         break;
       }
@@ -124,25 +130,21 @@ const Battlefield = () => {
     }, (counter += 100));
   }
 
-  encounter();
+
+  console.log('Encounter returned')
 
   return (
-    <div className="battlefieldContainer">
-      <div className="playerPokemonContainer">
-        <div className="playerPokemon">{playerPokemonName}</div>
-        <img
-          src={pokemon.sprites.front_default}
-          alt={pokemon.name}
-        />
-      </div>
-      <div className="vsSign">VS</div>
-      <div className="opponentPokemonContainer">
-        <div className="opponentPokemon">{opponentPokemonName}</div>
-        <img
-          src={opponent.sprites.front_default}
-          alt={opponent.name}
-        />
-      </div>
+    <div className="battlefield">
+      <div>{playerPokemonName}</div>
+      <img
+        src={pokemon.sprites.front_default}
+        alt={pokemon.name}
+      />
+      <div>{opponentPokemonName}</div>
+      <img
+        src={opponent.sprites.front_default}
+        alt={opponent.name}
+      />
     </div>
   );
 };

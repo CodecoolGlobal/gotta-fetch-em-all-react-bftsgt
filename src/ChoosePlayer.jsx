@@ -1,7 +1,7 @@
 import '/src/styles.css';
 
 const ChoosePlayer = ({ allPokemon, onPlayerClick }) => {
-
+console.log(allPokemon)
   return (
     <div className="choosePlayerContainer">
       <h2>Choose your Pokémon!</h2>
