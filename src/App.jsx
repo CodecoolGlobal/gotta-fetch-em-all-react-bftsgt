@@ -7,22 +7,22 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-  const usersPokemon = [
-    "https://pokeapi.co/api/v2/pokemon/bulbasaur",
-    "https://pokeapi.co/api/v2/pokemon/charizard",
-    "https://pokeapi.co/api/v2/pokemon/poliwhirl"
-  ]
   const [currentPage, setCurrentPage] = useState('Chooseplayer');
   const [allPokemon, setAllPokemon] = useState(null);
   const [encounterLocation, setEncounterLocation] = useState(null);
   const [playerPoke, setPlayerPoke] = useState(null)
   const [opponentPoke, setOpponentPoke] = useState(null)
+  const [usersPokemon, setUsersPokemon] = useState([
+    "https://pokeapi.co/api/v2/pokemon/bulbasaur",
+    "https://pokeapi.co/api/v2/pokemon/charizard",
+    "https://pokeapi.co/api/v2/pokemon/poliwhirl"
+  ])
 
   function onPlayerClick(pokemon) {
     setCurrentPage('LocationsList')
     setPlayerPoke(pokemon)
   }
-  function onLocationsClick(index, locations) {
+  function onLocationsClick(index) {
     setCurrentPage('Encounter');
     setEncounterLocation(index);
   }
@@ -46,7 +46,7 @@ function App() {
     }
     fetchData();
     console.log('loop finished');
-  }, []);
+  }, [usersPokemon]);
 
 
   if (currentPage === 'Chooseplayer') {
@@ -70,7 +70,7 @@ function App() {
   } else if (currentPage === 'Battlefield') {
     return (
       <div>
-        <Battlefield endClick={endClick}  setOpponentPoke={setOpponentPoke} playerPoke={playerPoke} opponentPoke={opponentPoke}  setPlayerPoke={setPlayerPoke}/>
+        <Battlefield endClick={endClick} setOpponentPoke={setOpponentPoke} playerPoke={playerPoke} opponentPoke={opponentPoke} setUsersPokemon={setUsersPokemon} usersPokemon={usersPokemon} setPlayerPoke={setPlayerPoke} />
       </div>
     );
   }

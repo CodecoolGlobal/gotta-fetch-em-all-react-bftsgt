@@ -1,13 +1,13 @@
 import ChoosePlayer from "./ChoosePlayer";
 import Encounter from "./Encounter";
 
-const Battlefield = ({ endClick, playerPoke, opponentPoke }) => {
+const Battlefield = ({ endClick, playerPoke, opponentPoke, setUsersPokemon, usersPokemon }) => {
   const pokemon = playerPoke
   const opponent = opponentPoke
   const playerPokemonName = pokemon.name;
   const opponentPokemonName = opponent.name;
   console.log(pokemon);
-  console.log(opponent);
+  console.log(opponent.species.url);
 
   async function getPokemonDetails(pokemonName) {
     try {
@@ -48,7 +48,7 @@ const Battlefield = ({ endClick, playerPoke, opponentPoke }) => {
     return Math.floor(damage);
   }
 
-  async function encounter() {
+  async function encounter(pokemonName) {
     // Wait for both player and opponent details to be fetched
     const playerPokemonDetails = await getPokemonDetails(playerPokemonName);
     const opponentPokemonDetails = await getPokemonDetails(opponentPokemonName);
@@ -71,6 +71,7 @@ const Battlefield = ({ endClick, playerPoke, opponentPoke }) => {
     let encounterResult = null; // Flag to track encounter result
 
     while (playerPokemon.hp > 0 && opponentPokemon.hp > 0) {
+      console.log(playerPokemon.hp)
       // Player attacks
       const damageToOpponent = calculateDamage(playerPokemon, opponentPokemon);
       opponentPokemon.hp -= damageToOpponent;
@@ -86,6 +87,8 @@ const Battlefield = ({ endClick, playerPoke, opponentPoke }) => {
           console.log(`${opponentPokemon.name} fainted! You captured it.`);
           encounterResult = "playerWins"; // Set the flag
         }, (counter += 300));
+        setUsersPokemon([...usersPokemon, `https://pokeapi.co/api/v2/pokemon/${pokemonName}`])
+        console.log(usersPokemon);
         break;
       }
 
@@ -103,6 +106,7 @@ const Battlefield = ({ endClick, playerPoke, opponentPoke }) => {
         setTimeout(() => {
           console.log(`${playerPokemon.name} fainted! The encounter ends.`);
           encounterResult = "opponentWins"; // Set the flag
+          setUsersPokemon([...usersPokemon.filter(pokemonUrl => pokemonUrl !== `https://pokeapi.co/api/v2/pokemon/${playerPokemon.name}`)]);
         }, (counter += 300));
         break;
       }
@@ -124,10 +128,12 @@ const Battlefield = ({ endClick, playerPoke, opponentPoke }) => {
     }, (counter += 100));
   }
 
-  encounter();
+
+  console.log('Encounter returned')
 
   return (
     <div className="battlefield">
+      <button id="Fight" onClick={() => {encounter(opponentPokemonName)}}>Fight</button>
       <div>{playerPokemonName}</div>
       <img
         src={pokemon.sprites.front_default}
@@ -138,7 +144,7 @@ const Battlefield = ({ endClick, playerPoke, opponentPoke }) => {
         src={opponent.sprites.front_default}
         alt={opponent.name}
       />
-        <button id="Back" onClick={() => { endClick() }}>Back To HomePage</button>
+      <button id="Back" onClick={() => { endClick() }}>Back To HomePage</button>
     </div>
   );
 };
