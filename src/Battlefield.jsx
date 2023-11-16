@@ -86,6 +86,7 @@ const Battlefield = ({ endClick, playerPoke, opponentPoke, setUsersPokemon, user
         setTimeout(() => {
           console.log(`${opponentPokemon.name} fainted! You captured it.`);
           encounterResult = "playerWins"; // Set the flag
+          alert(`You captured: ${pokemonName}`)
         }, (counter += 300));
         setUsersPokemon([...usersPokemon, `https://pokeapi.co/api/v2/pokemon/${pokemonName}`])
         console.log(usersPokemon);
@@ -107,6 +108,7 @@ const Battlefield = ({ endClick, playerPoke, opponentPoke, setUsersPokemon, user
           console.log(`${playerPokemon.name} fainted! The encounter ends.`);
           encounterResult = "opponentWins"; // Set the flag
           setUsersPokemon([...usersPokemon.filter(pokemonUrl => pokemonUrl !== `https://pokeapi.co/api/v2/pokemon/${playerPokemon.name}`)]);
+          alert(`You lost your pokemon: ${playerPokemon.name}`)
         }, (counter += 300));
         break;
       }
