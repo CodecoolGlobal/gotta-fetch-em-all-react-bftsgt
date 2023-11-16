@@ -1,13 +1,13 @@
 import ChoosePlayer from "./ChoosePlayer";
 import Encounter from "./Encounter";
 
-const Battlefield = () => {
-  const pokemon = JSON.parse(localStorage.getItem("PlayerPoke"));
-  const opponent = JSON.parse(localStorage.getItem("Opponent"));
+const Battlefield = ({ endClick, playerPoke, opponentPoke }) => {
+  const pokemon = playerPoke
+  const opponent = opponentPoke
   const playerPokemonName = pokemon.name;
   const opponentPokemonName = opponent.name;
-  console.log(playerPokemonName);
-  console.log(opponentPokemonName);
+  console.log(pokemon);
+  console.log(opponent);
 
   async function getPokemonDetails(pokemonName) {
     try {
@@ -138,6 +138,7 @@ const Battlefield = () => {
         src={opponent.sprites.front_default}
         alt={opponent.name}
       />
+        <button id="Back" onClick={() => { endClick() }}>Back To HomePage</button>
     </div>
   );
 };
