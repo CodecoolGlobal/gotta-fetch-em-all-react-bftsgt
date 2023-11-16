@@ -8,7 +8,7 @@ const ChoosePlayer = ({ allPokemon, onPlayerClick }) => {
           <div key={pokemon.name}>
             <img src={pokemon.sprites.front_default} />
             <h3 onClick={() => {
-                onPlayerClick()
+                onPlayerClick(pokemon)
             }}>{pokemon.name}</h3>
           </div>
         )

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const Encounter = ({ encounter }) => {
+const Encounter = ({ encounter, battleClick }) => {
   const [encounteredPokemon, setEncounteredPokemon] = useState(null);
   useEffect(() => {
     const fetchEncounteredPokemon = async () => {
@@ -30,7 +30,10 @@ const Encounter = ({ encounter }) => {
       <div>
         {console.log(encounter)}
         <div>{encounteredPokemon.name}</div>
-        <img src={encounteredPokemon.sprites.front_default} alt={encounteredPokemon.name} />
+        <img src={encounteredPokemon.sprites.front_default} alt={encounteredPokemon.name} onClick={() => {
+          battleClick(encounteredPokemon)
+        }
+        } />
       </div>
     )}
   </div>
