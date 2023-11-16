@@ -1,18 +1,31 @@
-.container {
+.choosePlayerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.container > div {
-  margin: 10px; /* Adjust the margin as needed */
-  border: 1px solid #000; /* 1px wide frame */
+.choosePlayerContainer > div {
+  margin: 10px; 
+  border: 1px solid #000;
   text-align: center;
-  padding: 10px; /* Adjust padding as needed */
+  padding: 10px;
 }
 
-.container img {
+.choosePlayerContainer img {
   max-width: 100%;
   height: auto;
-  border: 1px solid #000; /* 1px wide frame for the image */
+  border: 1px solid #000;
+}
+
+.locationsListContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.locationsListContainer > div {
+  margin: 10px; 
+  border: 1px solid #000;
+  text-align: center;
+  padding: 10px;
 }
