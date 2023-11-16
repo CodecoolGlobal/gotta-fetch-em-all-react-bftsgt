@@ -1,8 +1,10 @@
+import '/src/styles.css';
 
 const ChoosePlayer = ({ allPokemon, onPlayerClick }) => {
 
   return (
-    <div className="container">
+    <div className="choosePlayerContainer">
+      <h2>Choose your Pokémon!</h2>
       {allPokemon && allPokemon.map(pokemon => {
         return (
           <div key={pokemon.name}>

@@ -19,7 +19,7 @@ const LocationsList = ({ onLocationsClick }) => {
   }, []);
 
   return (
-    <div>
+    <div className='locationsListContainer'>
       <h3>Locations: </h3>
       <ul>
         {locations &&

@@ -1,0 +1,31 @@
+.choosePlayerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.choosePlayerContainer > div {
+  margin: 10px; 
+  border: 1px solid #000;
+  text-align: center;
+  padding: 10px;
+}
+
+.choosePlayerContainer img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #000;
+}
+
+.locationsListContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.locationsListContainer > div {
+  margin: 10px; 
+  border: 1px solid #000;
+  text-align: center;
+  padding: 10px;
+}
