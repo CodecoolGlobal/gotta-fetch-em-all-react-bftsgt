@@ -134,24 +134,26 @@ const Battlefield = ({ endClick, playerPoke, opponentPoke, setUsersPokemon, user
   console.log('Encounter returned')
 
   return (
-    <div className="battlefield">
-      <button id="Fight" onClick={() => encounter(opponentPokemonName)}>Fight!</button>
-      <div className="poke-card">
-        <div className="poke-name">{playerPokemonName.toUpperCase()}</div>
-        <img
-          src={pokemon.sprites.front_default}
-          alt={pokemon.name}
-        />
+    <div className="battlefield-container">
+        <button id="Fight" onClick={() => encounter(opponentPokemonName)}>Fight!</button>
+      <div className="battlefield">
+        <div className="poke-card">
+          <div className="poke-name">{playerPokemonName.toUpperCase()}</div>
+          <img
+            src={pokemon.sprites.front_default}
+            alt={pokemon.name}
+          />
+        </div>
+        <img src="src/versus-icon.png" className="vs-icon" />
+        <div className="poke-card">
+          <img
+            src={opponent.sprites.front_default}
+            alt={opponent.name}
+          />
+          <div className="poke-name">{opponentPokemonName.toUpperCase()}</div>
+        </div>
       </div>
-      <img src="src/versus-icon.png" className="vs-icon"/>
-      <div className="poke-card">
-        <img
-          src={opponent.sprites.front_default}
-          alt={opponent.name}
-        />
-        <div className="poke-name">{opponentPokemonName.toUpperCase()}</div>
-      </div>
-      <button id="Back" onClick={() => endClick()}>Back To HomePage</button>
+        <button id="Back" onClick={() => endClick()}>Back To HomePage</button>
     </div>
   );
 };
