@@ -12,21 +12,19 @@ function App() {
     "https://pokeapi.co/api/v2/pokemon/charizard",
     "https://pokeapi.co/api/v2/pokemon/poliwhirl"
   ]
-
+  const [currentPage, setCurrentPage] = useState('Chooseplayer');
   const [allPokemon, setAllPokemon] = useState(null);
-  // const [pokeID, setPokeID] = useState('krumpli')
-  let currentPage = 'Chooseplayer'
+  const [encounterLocation, setEncounterLocation] = useState(null);
+
 
   function onPlayerClick() {
-      setAllPokemon(null)
-      console.log(currentPage)
-      return (
-        <div>
-          <Encounter />
-        </div>  
-    );
+    setCurrentPage('LocationsList')
   }
-
+  function onLocationsClick(index) {
+     setCurrentPage('Encounter');
+     setEncounterLocation(index);
+   }
+  
   useEffect(() => {
     async function fetchData() {
       const pokemonsArray = []
@@ -42,35 +40,25 @@ function App() {
   }, []);
 
 
-if (currentPage === 'Chooseplayer') {
-  return (
+  if (currentPage === 'Chooseplayer') {
+    return (
       <div>
-        <ChoosePlayer allPokemon={allPokemon} onPlayerClick={onPlayerClick}/>
-      </div>  
-  );
-} else if (currentPage === 'Encounter'){
-  console.log('encounter?')
-  return (
-    <div>
-      <Encounter />
-    </div>  
-);
-}
-
-
+        <ChoosePlayer allPokemon={allPokemon} onPlayerClick={onPlayerClick} />
+      </div>
+    );
+  } else if (currentPage === 'LocationsList') {
+    return (
+      <div>
+        <LocationsList onLocationsClick={onLocationsClick} />
+      </div>
+    );
+  } else if (currentPage === 'Encounter'){
+    return (
+      <div>
+        <Encounter encounter={encounterLocation}/>
+      </div>
+    );
+  }
 }
 
 export default App;
-
-// return (
-//   <Router>
-//     <div>
-//       <Routes>
-//         <Route path="/" element={<ChoosePlayer allPokemon={allPokemon} pokeID={pokeID} pokename={pokename}/>} />
-//         <Route path="/locations" element={<LocationsList />} />
-//         <Route path="/encounter/:locationId" element={<Encounter />} />
-//         <Route path='/battlefield' element={<Battlefield />} />
-//       </Routes>
-//     </div>
-//   </Router>
-// );
