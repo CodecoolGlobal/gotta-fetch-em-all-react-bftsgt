@@ -19,7 +19,7 @@ const LocationsList = ({ onLocationsClick }) => {
   }, []);
 
   return (
-    <div className='locationsListContainer'>
+    <div className='locationsListContainer pixel-corners'>
       <h3>Locations: </h3>
       <ul>
         {locations &&
