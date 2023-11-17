@@ -26,7 +26,7 @@ const Encounter = ({ encounter, battleClick }) => {
 
  return (
   <div className='encounter-container'>
-    <h2>Encounter!</h2>
+    {encounteredPokemon && <h2>A wild {encounteredPokemon.name} appeared!</h2>}
     {encounteredPokemon && (
       <div className='poke-card'>
         {console.log(encounter)}

@@ -13,9 +13,9 @@ function App() {
   const [playerPoke, setPlayerPoke] = useState(null)
   const [opponentPoke, setOpponentPoke] = useState(null)
   const [usersPokemon, setUsersPokemon] = useState([
-    "https://pokeapi.co/api/v2/pokemon/bulbasaur",
-    "https://pokeapi.co/api/v2/pokemon/charizard",
-    "https://pokeapi.co/api/v2/pokemon/poliwhirl"
+    "https://pokeapi.co/api/v2/pokemon/arceus",
+    "https://pokeapi.co/api/v2/pokemon/mewtwo",
+    "https://pokeapi.co/api/v2/pokemon/shedinja"
   ])
 
   function onPlayerClick(pokemon) {

@@ -321,3 +321,9 @@ li:hover, .poke-name:hover {
 .pixel-corners::after {
   margin: -8px;
 }
+
+.encounter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
