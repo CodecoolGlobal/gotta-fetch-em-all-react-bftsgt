@@ -1,6 +1,8 @@
-# React + Vite
+# Pokemon Card Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In this project we had to create a basic web application, a playable Pokemon card game.
+
+![alt text](src/fight.jpg)
 
 Currently, two official plugins are available:
 
